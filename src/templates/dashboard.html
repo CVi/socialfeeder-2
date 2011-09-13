@@ -1,0 +1,66 @@
+{% spaceless %}
+{% include "wrap/head.html" %}
+<div class="links">
+  <div>
+    <div class="head">Services</div>
+  {% if not services %}
+    <div class="link">
+      <div class="text">No services added, add one below.</div>
+    </div>      
+  {% endif %}
+  {% for s in services %}
+    <div class="link">
+      <img class="avatar" src="{{ s.avatar }}" />
+      <div class="text">{{ s.service|capfirst }}: {{ s.userName }}</div>
+    </div>
+  {% endfor %}
+    <div class="add">
+      <a href="/modules/twitter/redirect.py">
+        <img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="links">
+  <div>
+    <div class="head">URL Shorteners</div>
+  {% if not shorteners %}
+    <div class="link">
+      <div class="text">No shorteners added, add one below.</div>
+    </div>      
+  {% endif %}
+  {% for s in shorteners %}
+    <div class="link">
+      <div class="text">{{ s.shortener|capfirst }}: {{ s.userName }}</div>
+    </div>
+  {% endfor %}
+    <div class="add">
+      <a href="/modules/bitly/redirect.py">
+        <img src="/static/bitly.gif" />
+      </a>
+    </div>
+  </div>
+</div>
+  
+<div class="links">
+  <div>
+    <div class="head">Feeds</div>
+    {% if not feeds %}
+      <div class="link">
+        <div class="text">No feeds added, add one below.</div>
+      </div>      
+    {% endif %}
+    {% for f in feeds %}
+      <div class="link">
+        <div class="text"><a href="/feeds/edit/{{ f.id }}.py">{{ f.name|capfirst }}</a></div>
+      </div>
+    {% endfor %}
+    </div>
+    <div class="add">
+      <a href="/feeds/add.py">Add a RSS feed</a>
+    </div>
+  </div>
+</div>
+{% include "wrap/foot.html" %}
+{% endspaceless %}

@@ -1,0 +1,13 @@
+queue:
+
+- name: feed-burns
+  rate: 15/h
+  bucket_size: 1
+
+- name: posts
+  rate: 20/h
+  bucket_size: 2
+  
+- name: longterm
+  rate: 1/h
+  bucket_size: 2

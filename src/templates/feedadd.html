@@ -1,0 +1,27 @@
+{% spaceless %}
+{% include "wrap/head.html" %}
+<form action="{{ action }}" method="post">
+<ul class="form">{{ form.as_ul }}</ul>
+<input type="submit">
+</form>
+{% if cfL %}
+   <a href="{{ id }}/cf.py">Edit Content Filter</a>
+{% endif %}
+{% for s in sva %}
+<form action="/feeds/sva.py" method="post">
+  <input type="hidden" name="svs" value="{{ s.key }}" />
+  <input type="hidden" name="fd" value="{{ id }}">
+  <label>{{ s.service|capfirst }}: {{ s.userName }}</label>
+  <input type="submit" value="add"/>
+</form>
+{% endfor %}
+{% for s in svr %}
+<form action="/feeds/svr.py" method="post">
+  <input type="hidden" name="svs" value="{{ s.key }}" />
+  <input type="hidden" name="fd" value="{{ id }}">
+  <label>{{ s.service|capfirst }}: {{ s.userName }}</label>
+  <input type="submit" value="Remove"/>
+</form>
+{% endfor %}
+{% include "wrap/foot.html" %}
+{% endspaceless %}

@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Social2Feed</title>
+    <link rel="stylesheet" type="text/css" href="/static/main.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js" type="text/javascript"></script>
+    {% for s in JS %}
+    <script src="/static/{{ s }}" type="text/javascript"></script>
+    {% endfor %}
+  </head>
+  <body>

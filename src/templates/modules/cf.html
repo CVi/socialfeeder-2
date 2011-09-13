@@ -1,0 +1,11 @@
+{% spaceless %}
+{% include "wrap/head.html" %}
+<script type="text/javascript" src="/static/pinform.js"></script>
+<script type="text/javascript">var feed={{feed.id}}; var mod = "{{feed.cfMod}}";</script>
+<div id="form">
+</div>
+<div>
+  <a href="{% url sfdr.views.feeds.edit feed=feed.id %}">&lt;-Back</a>
+</div>
+{% include "wrap/foot.html" %}
+{% endspaceless %}

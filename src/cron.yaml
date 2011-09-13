@@ -1,0 +1,8 @@
+cron:
+- description: Oropahned feeds check
+  url: /tasks/feeds/orophan.py
+  schedule: every 6 hours
+
+- description: Oropahned posts check
+  url: /tasks/posts/orophan.py
+  schedule: every 4 hours

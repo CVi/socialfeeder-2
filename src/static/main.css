@@ -1,0 +1,55 @@
+div{
+  width:100%;
+}
+.links{
+  width: 250px;
+  float: left;
+  margin: 3px;
+}
+.links div.head{
+  text-align: center;
+  font-size: 150%;
+  margin-left: -1px;
+  border: 1px solid #000;
+  border-bottom: 0px transparent;
+}
+ul.form{
+  padding:0px;
+  margin:0px;
+  list-style-type: none;
+}
+.link {
+  width: 250px;
+  background-color: #EEE;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding:0px;
+}
+.link div {
+  background-color: #EEE;
+  height: 50px;
+  margin:0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding:0px;
+  display:table;
+}
+.avatar{
+  float:left;
+  height:50px;
+  width:50px;
+  background-color:#FFF;
+}
+.link div.text {
+  padding-left:4px;
+  vertical-align: middle;
+  display:table-cell;
+}
+label{
+  display:block;
+  float:left;
+  width:150px;
+}
+.radioblock{
+  padding-left:150px;
+}

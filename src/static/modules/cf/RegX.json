@@ -1,0 +1,1 @@
+[{type:"text", name:"ft",title:"Filter Title",ph:"Regular Expression"},{type:"text",name:"rt",title:"Title",ph:"I.E. 'New image: %s'"},{type:"text",name:"fd",title:"Filter Description"Regular Expression"},{type:"text",name:"rd",title:"Description",ph:"I.E. '%s'"},]

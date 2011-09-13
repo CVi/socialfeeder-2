@@ -1,0 +1,33 @@
+application: socialfeeder2
+version: 0-0-2c
+runtime: python
+api_version: 1
+
+builtins:
+- remote_api: on
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /static
+  expiration: "1h"
+  static_dir: static
+
+- url: /_ah/queue/deferred
+  script: djangoappengine/deferred/handler.py
+  login: admin
+
+- url: /_ah/stats/.*
+  script: djangoappengine/appstats/ui.py
+
+- url: /media/admin
+  static_dir: django/contrib/admin/media
+  expiration: '0'
+
+- url: /tasks/.*
+  script: djangoappengine/main/main.py
+  login: admin
+
+- url: /.*
+  script: djangoappengine/main/main.py
