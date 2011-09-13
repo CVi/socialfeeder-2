@@ -1,7 +1,33 @@
 {% spaceless %}
 {% include "wrap/head.html" %}
 <script type="text/javascript" src="/static/pinform.js"></script>
-<script type="text/javascript">var feed={{feed.id}}; var mod = "{{feed.cfMod}}";</script>
+<script type="text/javascript">
+var feed={{feed.id}};
+var mod = "{{feed.cfMod}}";
+
+function IniT(){
+    dojo.xhrGet({
+        url:"/static/modules/cf/"+mod+".json",
+        timeout: 2000,
+        handleAs: "json",
+        load: function(result){
+            var ct = dojo.byId("form");    
+            fm = sfdr.form.form(result, ct);
+            fm.render();
+            dojo.xhrGet({
+                url:"/ajax/feed/"+feed+"/cf/get.json",
+                timeout: 2000,
+                handleAs: "json",
+                load: function(result){
+                    fm.set(result);
+                }
+            })
+        }
+    })
+}
+dojo.addOnLoad(IniT);
+
+</script>
 <div id="form">
 </div>
 <div>

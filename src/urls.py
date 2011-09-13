@@ -31,6 +31,7 @@ urlpatterns = patterns('',
 
     (r'^ajax/feed/(?P<feed>\d{1,6})/cf/store.json', 'sfdr.views.ajax.cfStore'),
     (r'^ajax/feed/(?P<feed>\d{1,6})/cf/get.json', 'sfdr.views.ajax.cfLoad'),
+    (r'^ajax/db.json', 'sfdr.views.dashboard.json'),
 
     (r'^admin/', include(admin.site.urls)), #@UndefinedVariable
 )

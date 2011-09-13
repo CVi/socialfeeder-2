@@ -362,26 +362,3 @@ dojo.declare("sfdr.form.form", null, {
         }
     }
 })
-
-function IniT(){
-    dojo.xhrGet({
-        url:"/static/modules/cf/"+mod+".json",
-        timeout: 2000,
-        handleAs: "json",
-        load: function(result){
-            var ct = dojo.byId("form");    
-            fm = sfdr.form.form(result, ct);
-            fm.render();
-            dojo.xhrGet({
-                url:"/ajax/feed/"+feed+"/cf/get.json",
-                timeout: 2000,
-                handleAs: "json",
-                load: function(result){
-                    fm.set(result);
-                }
-            })
-            loaD()
-        }
-    })
-}
-dojo.addOnLoad(IniT);

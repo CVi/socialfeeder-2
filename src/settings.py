@@ -64,4 +64,4 @@ BITLY_CBK = ""
 
 TQWOKEY = "WO9"
 
-cfMODS = ['EncR', 'RegX', "StripR"]
+cfMODS = ['EncR', 'RegX']

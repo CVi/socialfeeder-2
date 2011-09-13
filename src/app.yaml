@@ -11,7 +11,7 @@ inbound_services:
 
 handlers:
 - url: /static
-  expiration: "1h"
+  expiration: "1s"
   static_dir: static
 
 - url: /_ah/queue/deferred

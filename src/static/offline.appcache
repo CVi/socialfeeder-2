@@ -1,0 +1,18 @@
+CACHE MANIFEST
+#version 0000000A
+NETWORK:
+/static/ajax.htm
+/static/js/sfdr/pages.js
+*
+CACHE:
+/static/main.css
+/static/bitly.gif
+/static/egg.png
+/static/modules/cf/EncR.json
+/static/modules/cf/RegX.json
+/static/js/sfdr/form.js
+http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js
+http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/_firebug/firebug.xd.js
+http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png
+FALLBACK:
+/ /static/fallback.html
