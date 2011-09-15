@@ -77,6 +77,7 @@ class itemTester():
         try:
             e = Entry.objects.filter(feed=feed).order_by("-date")[0]
         except IndexError:
+            logging.warning("Index Error, this is bad!")
             items = self._secondaryFilterEngine(feed, items)
             current = items[1]
             for i in items:

@@ -47,8 +47,8 @@ def EncR_Rs(request):
             # clean and simple.
             #===================================================================
             try:
-                ose = loads(enobj.other)["cf"]
-                ol = ose["l"]
+                ose = loads(enobj.other)
+                ol = ose["cf"]["l"]
             except:
                 try:
                     ose = loads(enobj.other)
@@ -115,11 +115,11 @@ def EncR_Rs(request):
                     logging.debug("owl: %s" % (st))
                     svs = feedobj.postTo
                     if svs:
-                       from sfdr.modules.post import push
-                       from sfdr.models import Service
-                       for s in svs:
-                           svs = Service.objects.get(key=s)
-                           push(svs, st, enobj.shortURL)
+                        from sfdr.modules.post import push
+                        from sfdr.models import Service
+                        for s in svs:
+                            svs = Service.objects.get(key=s)
+                            push(svs, st, enobj.shortURL)
                     #===========================================================
                     # Now that we found one new entry, we reschedule the task
                     # to run next week.
