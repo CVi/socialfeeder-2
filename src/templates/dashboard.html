@@ -10,13 +10,13 @@
   {% endif %}
   {% for s in services %}
     <div class="link">
-      <img class="avatar" src="{{ s.avatar }}" />
+      <img class="avatar" src="{{ s.avatar }}" alt="{{ s.userName }}'s avatar" />
       <div class="text">{{ s.service|capfirst }}: {{ s.userName }}</div>
     </div>
   {% endfor %}
     <div class="add">
       <a href="/modules/twitter/redirect.py">
-        <img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png" />
+        <img src="http://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png" alt="Connect to twitter" />
       </a>
     </div>
   </div>
@@ -37,7 +37,7 @@
   {% endfor %}
     <div class="add">
       <a href="/modules/bitly/redirect.py">
-        <img src="/static/bitly.gif" />
+        <img src="/static/bitly.gif"  alt="Connect to bitly"/>
       </a>
     </div>
   </div>
@@ -56,10 +56,9 @@
         <div class="text"><a href="/feeds/edit/{{ f.id }}.py">{{ f.name|capfirst }}</a></div>
       </div>
     {% endfor %}
-    </div>
-    <div class="add">
-      <a href="/feeds/add.py">Add a RSS feed</a>
-    </div>
+  </div>
+  <div class="add">
+    <a href="/feeds/add.py">Add a RSS feed</a>
   </div>
 </div>
 {% include "wrap/foot.html" %}

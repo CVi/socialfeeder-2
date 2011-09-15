@@ -105,15 +105,14 @@ dojo.declare("sfdr.pages.dashboard", sfdr.pages.page, {
         }, links);
         for (s in data.fds) {
             sn = data.fds[s];
-            l = dojo.create("div", {
-                "class" : "link"
-            }, links);
-            dojo.create("div", {
-                "class" : "text",
-                innerHTML : sn.name
-            }, l);
+            var l = dojo.create("div", { "class" : "link" }, links);
+            dojo.create("div", {"class" : "text",innerHTML : sn.name}, l);
+            dojo.connect(l,"onclick", data.fds[s], this.gotoFeed)
         }
         this._postcon();
+    },
+    gotoFeed: function(){
+        dojo.hash("!/feed/"+this.name,true);
     }
 });
 
@@ -127,6 +126,7 @@ dojo.declare("sfdr.pages.controller", null, {
     },
     change : function(hash) {
         this.hidepage(this.current.f);
+        console.log("Yup, event caught")
     },
     shloader: function(){
         this.loader.f.style.height = "";
