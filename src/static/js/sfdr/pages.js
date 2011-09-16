@@ -2,27 +2,8 @@ dojo.provide("sfdr.pages");
 
 dojo.require("dojo.hash");
 dojo.require("cvdj.capstring");
+dojo.require("cvdj.Cache")
 dojo.require("dojo.fx");
-
-c = {
-    svs : [ {
-        type : "twitter",
-        name : "C4Vi",
-        avatar : "http://a2.twimg.com/profile_images/1278412600/IMG_0197_3_normal.jpg"
-    }, {
-        type : "twitter",
-        name : "CVis500d",
-        avatar : "http://a0.twimg.com/profile_images/1315998557/DSC00678_-_Version_2_normal.jpg"
-    }, ],
-    snr : [ {
-        type : "bitly",
-        name : "christoffervi"
-    } ],
-    fds : [ {
-        name : "500d",
-        id : 3
-    } ]
-};
 
 dojo.declare("sfdr.pages.page", null, {
     _precon : function() {
@@ -44,11 +25,7 @@ dojo.declare("sfdr.pages.form", sfdr.pages.page, {
 dojo.declare("sfdr.pages.loading", sfdr.pages.page, {
     constructor : function(data) {
         this._precon();
-        dojo.create("img", {
-            src : "/static/loader.gif"
-        }, dojo.create("div", {
-            style : "text-align: center"
-        }, this.f));
+        dojo.create("img", { src : "/static/loader.gif" }, dojo.create("div", { style : "text-align: center"}, this.f));
         this._postcon();
     }
 });
@@ -56,55 +33,27 @@ dojo.declare("sfdr.pages.loading", sfdr.pages.page, {
 dojo.declare("sfdr.pages.dashboard", sfdr.pages.page, {
     constructor : function(data) {
         this._precon();
-        this.svs = dojo.create("div", null, dojo.create("div", {
-            "class" : "links"
-        }, this.f));
-        dojo.create("div", {
-            "class" : "head",
-            innerHTML : "Services"
-        }, this.svs);
+        this.svs = dojo.create("div", null, dojo.create("div", {"class" : "links"}, this.f));
+        dojo.create("div", {"class" : "head", innerHTML : "Services" }, this.svs);
         for (s in data.svs) {
-            sv = data.svs[s];
-            l = dojo.create("div", {
-                "class" : "link"
-            }, this.svs);
-            dojo.create("img", {
-                "class" : "avatar",
-                src : sv.avatar
-            }, l);
-            dojo.create("div", {
-                "class" : "text",
-                innerHTML : sv.type.capitalize() + ": " + sv.name
-            }, l);
+            var sv = data.svs[s];
+            var l = dojo.create("div", {"class" : "link"}, this.svs);
+            dojo.create("img", {"class" : "avatar", src : sv.avatar}, l);
+            dojo.create("div", { "class" : "text", innerHTML : sv.type.capitalize() + ": " + sv.name}, l);
         }
 
-        var links = dojo.create("div", null, dojo.create("div", {
-            "class" : "links"
-        }, this.f));
-        dojo.create("div", {
-            "class" : "head",
-            innerHTML : "Shorteners"
-        }, links);
+        var links = dojo.create("div", null, dojo.create("div", {"class" : "links"}, this.f));
+        dojo.create("div", { "class" : "head", innerHTML : "Shorteners"}, links);
         for (s in data.snr) {
-            sn = data.snr[s];
-            l = dojo.create("div", {
-                "class" : "link"
-            }, links);
-            dojo.create("div", {
-                "class" : "text",
-                innerHTML : sn.type.capitalize() + ": " + sn.name
-            }, l);
+            var sn = data.snr[s];
+            var l = dojo.create("div", {"class" : "link"}, links);
+            dojo.create("div", {"class" : "text",innerHTML : sn.type.capitalize() + ": " + sn.name}, l);
         }
 
-        var links = dojo.create("div", null, dojo.create("div", {
-            "class" : "links"
-        }, this.f));
-        dojo.create("div", {
-            "class" : "head",
-            innerHTML : "Feeds"
-        }, links);
+        var links = dojo.create("div", null, dojo.create("div", {"class" : "links"}, this.f));
+        dojo.create("div", {"class" : "head",innerHTML : "Feeds"}, links);
         for (s in data.fds) {
-            sn = data.fds[s];
+            var sn = data.fds[s];
             var l = dojo.create("div", { "class" : "link" }, links);
             dojo.create("div", {"class" : "text",innerHTML : sn.name}, l);
             dojo.connect(l,"onclick", data.fds[s], this.gotoFeed)
@@ -116,17 +65,58 @@ dojo.declare("sfdr.pages.dashboard", sfdr.pages.page, {
     }
 });
 
+dojo.declare("sfdr.pages.feed", sfdr.pages.page, {
+	constructor: function(data){
+        this._precon();
+		this.data = data.data;
+		this.shorteners = data.shorteners;
+		this.formats = data.formats;
+		this.fons = data.fons;
+		this.cfes = data.cfes;
+		this.svs = data.svs;
+		this.display();
+        this._postcon();
+	},
+	display: function(){
+		this.disp = dojo.create("div", {}, this.f);
+        var u = dojo.create("ul",{}, this.disp);
+        var l = dojo.create("li", {}, u);
+        dojo.create("span", {innerHTML: "Name: ", style:{"margin-right":"5px"}}, l);
+        dojo.create("span", {innerHTML: this.data.name}, l);
+
+        var l = dojo.create("li", {}, u);
+        dojo.create("span", {innerHTML: "Feed URL: ", style:{"margin-right":"5px"}}, l);
+        dojo.create("span", {innerHTML: this.data.feed}, l);
+
+        var l = dojo.create("li", {}, u);
+        dojo.create("span", {innerHTML: "URL Shortener: ", style:{"margin-right":"5px"}}, l);
+        dojo.create("span", {innerHTML: this.shorteners[this.data.shortener]}, l);
+
+        var l = dojo.create("ul", {}, dojo.create("li", {innerHTML:"Services:<br />"}, u));
+        for (i in this.data.svs){
+        	dojo.create("li", {innerHTML:this.svs[this.data.svs[i]]}, l);
+        }
+
+	}
+});
+
 dojo.declare("sfdr.pages.controller", null, {
     constructor : function() {
         dojo.subscribe("/dojo/hashchange", this, this.change);
         this.loader = new sfdr.pages.loading();
         this.shloader();
-        this.current = new sfdr.pages.dashboard(c);
-        this.showpage(this.current.f);
+        this.manager = new sfdr.pages.manager();
+        this.change(dojo.hash());
     },
     change : function(hash) {
-        this.hidepage(this.current.f);
-        console.log("Yup, event caught")
+    	if (this.current){
+	        this.hidepage(this.current.f);
+    	}
+        hash = hash.substring(2).split("/");
+        this.current = this.manager.fetch(hash[0], hash[1]);
+        this.showpage(this.current.f)
+        console.log("hash has changed");
+        console.log(hash);
     },
     shloader: function(){
         this.loader.f.style.height = "";
@@ -155,6 +145,47 @@ dojo.declare("sfdr.pages.controller", null, {
         this.loader.f.style.display = "block";
     }
 });
+
+dojo.declare("sfdr.pages.manager", null, {
+	constructor: function(){
+		console.log("Manager Loaded");
+		this.cache = new cvdj.Cache();
+	},
+	fetch: function(type, id){
+		var d = null;
+		console.log("Fetching")
+		d = this.cache.get(type+"/"+id)
+		if(d){
+			return d
+		}
+		else{
+			switch(type){
+				case "feed":
+				    var req = "/static/feed.json";
+				    var p = sfdr.pages.feed;
+				    break;
+				 
+			    default:
+			    	var req = "/static/dashboard.json";
+			    	var p = sfdr.pages.dashboard;
+			}
+			if (req != undefined){
+				var ds = null;
+				dojo.xhrGet({
+				    url:req,
+    				handleAs:"json",
+    				sync: true,
+    				load: function(data){
+        				ds = data;
+				    }
+				});
+				console.log(ds);
+				return p(ds);
+			}
+		}
+	}
+});
+
 
 /*
  * window.authDone = function(){ dojo.destroy(dojo.byId("authFrame")); delete

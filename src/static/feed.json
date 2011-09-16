@@ -1,0 +1,20 @@
+{
+	data:{
+		name:"500D",
+		feed:"http://api.flickr.com/services/feeds/photoset.gne?set=72157626475722419&nsid=39290684@N06&lang=en-us&format=rss_200",
+		shortener:"1:christoffervi@bitly",
+		pre: "New Photo on Flickr: ",
+		format: "TDL",
+		post: "",
+		fon: "T",
+		ftx: "",
+		cfe: "StripR",
+		cfc: {},
+		svs: ["1:CVis500d@twitter"]
+	},
+	shorteners:{"1:christoffervi@bitly":"christoffervi@bit.ly"},
+	formats:{},
+	fons:{},
+	cfes:{},
+	svs:{"1:CVis500d@twitter":"CVis500d@twitter"}
+}

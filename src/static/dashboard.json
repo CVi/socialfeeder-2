@@ -1,0 +1,19 @@
+{
+    svs : [ {
+        type : "twitter",
+        name : "C4Vi",
+        avatar : "http://a2.twimg.com/profile_images/1278412600/IMG_0197_3_normal.jpg"
+    }, {
+        type : "twitter",
+        name : "CVis500d",
+        avatar : "http://a0.twimg.com/profile_images/1315998557/DSC00678_-_Version_2_normal.jpg"
+    }, ],
+    snr : [ {
+        type : "bitly",
+        name : "christoffervi"
+    } ],
+    fds : [ {
+        name : "500d",
+        id : 3
+    } ]
+}
