@@ -180,7 +180,10 @@ class cfWrapper:
                    "RegX":self._RegX,
                    "StripR":self._StripR
                    }
-        post["summary"] = strip_tags(post['summary'].encode('latin-1', 'ignore'))
+        try:
+            post["summary"] = strip_tags(post['summary'].encode('latin-1', 'ignore'))
+        except:
+            post["summary"] = ""
         post["title"] = post["title"].encode('latin-1', 'ignore')
         if feed is not self.feed:
             self.feed = feed
