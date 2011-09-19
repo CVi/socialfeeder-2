@@ -81,7 +81,6 @@ class api:
         data = {
                 "format":"json",
                 "longUrl":url,
-                "domain":"bit.ly",
                 "login":self.login,
                 "apiKey":self.api_key
                 }
