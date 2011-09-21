@@ -150,6 +150,7 @@ def store(request):
         from sfdr.models import Shortener
         form = feedForm(Shortener.objects.filter(user=request.user), request.POST)
         if form.is_valid() and form.cleaned_data['fd']:
+            logging.debug("Shortener is \"%s\"" % form.cleaned_data['snr'])
             from sfdr.models import Feed
             fid = form.cleaned_data['feed']
             try:
@@ -159,6 +160,7 @@ def store(request):
                 raise Http404
             Fo.name = form.cleaned_data['nm']
             Fo.url = form.cleaned_data['fd']
+            Fo.urlShortener = form.cleaned_data['snr']
             Fo.preText = str(form.cleaned_data['pre'])
             Fo.postText = str(form.cleaned_data['post'])
             Fo.postType = form.cleaned_data['fmt']
