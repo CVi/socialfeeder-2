@@ -18,7 +18,7 @@ def push(service, text, link):
         import settings
         twitter = api(settings.TWITTER_PUB, settings.TWITTER_PRI, service.pubKey, service.priKey)
         logging.debug("Tweeting now to %s; link: \"%s\", ttl: \"%s\"" % (service.key, link, text))
-        twitter.push(link, text)
+        twitter.push(text, link)
 
     def _noOp(service, text, link): #@UnusedVariable
         logging.error("Strange \"%s\" is not known" % service.service)
